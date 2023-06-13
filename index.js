@@ -1,5 +1,6 @@
 import express from "express"
 import prisma from "./src/utils/prisma.js"
+import { Prisma } from "@prisma/client"
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -17,15 +18,18 @@ app.listen(port, () => {
 
 app.post(`/users`, async (req, res) => {
   try {
-    const data = req.body
+    const { name, email, password } = req.body
     const users = await prisma.user.create({
     data: {
+      name,
+      email,
+      password,
     },
   })
   res.json(users)
 
   } catch (err) {
-    if (err instanceof prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
       const formattedError = {}
       formattedError[`${err.meta.target[0]}`] = 'already taken'
 
@@ -33,8 +37,8 @@ app.post(`/users`, async (req, res) => {
         error: formattedError
       });
     }
-
-  } throw err
+    throw err
+  } 
 
 })
 

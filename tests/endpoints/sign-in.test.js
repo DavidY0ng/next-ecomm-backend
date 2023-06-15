@@ -62,7 +62,23 @@ describe ("POST /sign-in", () => {
       expect(signInResponse.body.error).toBeTruthy();
       expect(signInResponse.body.error).toBe('Email address or password not valid')
     });
-  
 
+    it("with invalid email should fail", async () => {
+      
+      const createUserResponse = await request(app)
+        .post("/users")
+        .send(user)
+        .set('Accept', 'application/json');
+      
+      user.password = "dave@example.com"
+      const signInResponse = await request(app)
+        .post("/sign-in")
+        .send(user)
+        .set('Accept', 'application/json');
+  
+      expect(signInResponse.statusCode).toBe(401);
+      expect(signInResponse.body.error).toBeTruthy();
+      expect(signInResponse.body.error).toBe('Email address or password not valid')
+    });
 })
   

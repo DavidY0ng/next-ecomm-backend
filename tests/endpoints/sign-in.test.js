@@ -70,7 +70,7 @@ describe ("POST /sign-in", () => {
         .send(user)
         .set('Accept', 'application/json');
       
-      user.password = "dave@example.com"
+      user.password = "1234"
       const signInResponse = await request(app)
         .post("/sign-in")
         .send(user)
@@ -78,7 +78,7 @@ describe ("POST /sign-in", () => {
   
       expect(signInResponse.statusCode).toBe(401);
       expect(signInResponse.body.error).toBeTruthy();
-      expect(signInResponse.body.error).toBe('Email address or password not valid')
+      expect(signInResponse.body.error).toBe('Password not valid')
     });
 })
   

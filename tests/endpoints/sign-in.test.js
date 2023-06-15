@@ -11,7 +11,7 @@ async function cleanupDatabase() {
     );
 }
 
-describe ("POST /sign-in", () => {
+describe ("POST /auth", () => {
     const user = {
         name: 'John',
         email: 'john9@example.com',
@@ -37,7 +37,7 @@ describe ("POST /sign-in", () => {
         .set('Accept', 'application/json');
   
       const signInResponse = await request(app)
-        .post("/sign-in")
+        .post("/auth")
         .send(user)
         .set('Accept', 'application/json');
   
@@ -54,7 +54,7 @@ describe ("POST /sign-in", () => {
       
       user.email = "dave@example.com"
       const signInResponse = await request(app)
-        .post("/sign-in")
+        .post("/auth")
         .send(user)
         .set('Accept', 'application/json');
   
@@ -72,7 +72,7 @@ describe ("POST /sign-in", () => {
       
       user.password = "1234"
       const signInResponse = await request(app)
-        .post("/sign-in")
+        .post("/auth")
         .send(user)
         .set('Accept', 'application/json');
   

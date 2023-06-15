@@ -7,7 +7,9 @@ import { signAccessToken } from "./src/utils/jwt.js"
 
 
 const app = express()
-const port = process.env.PORT || 8080
+
+app.use(express.json())
+app.use(cors())
 
 function filter(obj, ...keys) {
   return keys.reduce((a, c) => ({ ...a, [c]: obj[c]}), {})
@@ -57,17 +59,10 @@ function validateLogin(input) {
   return validationErrors
 }
 
-app.use(express.json())
-app.use(cors())
-
 app.get('/', async (req, res) => {
     const allUsers = await prisma.user.findMany()
     res.json(allUsers)
   })
-
-app.listen(port, () => {
-  console.log(`App started; listening on port ${port}`)
-})
 
 app.post(`/users`, async (req, res) => {
   try {
@@ -123,6 +118,7 @@ app.post('/sign-in', async (req, res) => {
 
   const accessToken = await signAccessToken(user)
   return res.json({ accessToken })
+  
 })
 
-
+export default app

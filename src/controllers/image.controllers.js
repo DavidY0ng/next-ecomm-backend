@@ -1,18 +1,16 @@
 import express from 'express'
 import { Prisma } from "@prisma/client"
 import prisma from "../utils/prisma.js"
-import { validateUser } from "../validators/users.js"
 const router = express.Router()
 
 
 router.post('/', async (req, res) => {
   const data = req.body
-  // const validationErrors = validateUser(data)
 
   prisma.image.create({
     data
   }).then(image => {
-    return res.json()
+    return res.json(image)
     
 
   }).catch(err => {

@@ -1,6 +1,7 @@
 import express from "express"
 import userRouter from "./src/controllers/users.controllers.js"
 import authRouter from "./src/controllers/auth.controllers.js"
+import imageRouter from "./src/controllers/image.controllers.js"
 import cors from "cors"
 import morgan from "morgan"
 import auth from "./src/middlewares/auth.js" 
@@ -11,10 +12,11 @@ app.use(morgan('combined'))
 
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
+app.use('/image', imageRouter)
 
-app.get('/protected', auth, (req, res) => {
-    res.json({ "hello": "world" })
-  })
+// app.get('/protected', auth, (req, res) => {
+//     res.json({ "hello": "world" })
+//   })
 
 export default app
 

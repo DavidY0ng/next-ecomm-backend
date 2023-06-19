@@ -20,7 +20,7 @@ model User {
 
 model Image {
   id          Int     @id @default(autoincrement())
-  path        Int
+  path        String @unique
   price       Int
   title       String
   description String?

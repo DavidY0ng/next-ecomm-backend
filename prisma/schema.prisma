@@ -19,11 +19,12 @@ model User {
 }
 
 model Image {
-  id          Int     @id @default(autoincrement())
-  path        String @unique
-  price       Int
-  title       String
-  description String?
-  seller      User @relation(fields:[sellerId], references: [id])
-  sellerId    Int
+  id            Int     @id @default(autoincrement())
+  name          String?
+  path          String @unique
+  price         Decimal
+  title         String
+  description   String?
+  seller          User @relation(fields:[sellerId], references: [id])
+  sellerId        Int 
 }

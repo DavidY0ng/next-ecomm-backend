@@ -12,7 +12,7 @@ app.use(morgan('combined'))
 
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
-app.use('/image', auth, imageRouter)
+app.use('/image', imageRouter)
 
 // app.get('/protected', auth, (req, res) => {
 //     res.json({ "hello": "world" })

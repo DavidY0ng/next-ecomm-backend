@@ -2,12 +2,12 @@ import { verifyAccessToken } from '../utils/jwt.js'
 
 export default async function auth(req, res, next) {
   if (!req.headers.authorization) {
-    return res.status(401).send({'error': 'Unauthorized'})
+    return res.status(401).send({'error': 'Unauthorized no header'})
   }
 
   const token = req.headers.authorization.split(' ')[1]
   if (!token) {
-    return res.status(401).send({ 'error': 'Unauthorized' })
+    return res.status(401).send({ 'error': 'Unauthorized, no token' })
   }
 
   await verifyAccessToken(token).then(user => {

@@ -25,6 +25,6 @@ model Image {
   price         Decimal
   title         String
   description   String?
-  seller          User @relation(fields:[sellerId], references: [id])
-  sellerId        Int 
+  seller        User @relation(fields:[sellerId], references: [id])
+  sellerId      Int 
 }

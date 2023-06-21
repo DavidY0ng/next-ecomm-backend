@@ -27,25 +27,24 @@ router.post('/', async (req, res) => {
   })
 })
 
-router.delete('/delete', auth , async (req, res) => {
-  console.log(req.user.payload.id)
+router.delete('/:id', auth, async (req, res) => {
   const image = await prisma.image.findUnique({
     where: {
-      id: req.user.payload.id
+      id: parseInt(req.params.id)
     }
   })
   
   // we have access to `req.user` from our auth middleware function (see code above where the assignment was made)
-  if (req.user.id != image.sellerId) {
+  if (req.user.payload.id != image.sellerId) {
       return res.status(401).send({"error": "Unauthorized"})
   }
   
   const deleteImage = await prisma.image.delete({
     where: {
-     id
+     id: parseInt(req.params.id)
     },
   })
-  // some code
+  
 })
 
 

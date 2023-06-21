@@ -34,7 +34,6 @@ router.delete('/:id', auth, async (req, res) => {
     }
   })
   
-  // we have access to `req.user` from our auth middleware function (see code above where the assignment was made)
   if (req.user.payload.id != image.sellerId) {
       return res.status(401).send({"error": "Unauthorized"})
   }
@@ -44,7 +43,7 @@ router.delete('/:id', auth, async (req, res) => {
      id: parseInt(req.params.id)
     },
   })
-  
+  return res.json(`deleted: image id ${req.params.id}`)
 })
 
 

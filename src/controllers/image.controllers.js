@@ -1,6 +1,7 @@
 import express from 'express'
 import { Prisma } from "@prisma/client"
 import prisma from "../utils/prisma.js"
+import auth from '../middlewares/auth.js'
 const router = express.Router()
 
 
@@ -25,5 +26,25 @@ router.post('/', async (req, res) => {
     throw err
   })
 })
+
+router.delete('/:id', auth, async (req, res) => {
+  const image = await prisma.image.findUnique({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  })
+  
+  if (req.user.payload.id != image.sellerId) {
+      return res.status(401).send({"error": "Unauthorized"})
+  }
+  
+  const deleteImage = await prisma.image.delete({
+    where: {
+     id: parseInt(req.params.id)
+    },
+  })
+  return res.json(`deleted: image id ${req.params.id}`)
+})
+
 
 export default router

@@ -33,7 +33,7 @@ router.delete('/:id', auth, async (req, res) => {
       id: parseInt(req.params.id)
     }
   })
-  
+  console.log(image)
   if (req.user.payload.id != image.sellerId) {
       return res.status(401).send({"error": "Unauthorized"})
   }

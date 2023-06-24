@@ -22,7 +22,7 @@ model Image {
   id            Int     @id @default(autoincrement())
   name          String?
   path          String @unique
-  price         Decimal
+  price         Int
   title         String
   description   String?
   seller        User @relation(fields:[sellerId], references: [id])

@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
             images: [imageData.path
             ]
           },
-          unit_amount: 2000,
+          unit_amount: imageData.price,
         },
         quantity: 1,
       },

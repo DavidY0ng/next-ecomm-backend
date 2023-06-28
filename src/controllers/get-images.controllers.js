@@ -7,7 +7,8 @@ const router = express.Router()
 router.get('/', async (req, res) => {
 //   const data = req.body
 
-  prisma.image.findMany()
+  prisma.image.findMany({
+  })
   .then(image => {
     return res.json(image)
     

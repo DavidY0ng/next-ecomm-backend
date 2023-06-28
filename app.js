@@ -4,6 +4,7 @@ import authRouter from "./src/controllers/auth.controllers.js"
 import imageRouter from "./src/controllers/image.controllers.js"
 import getImageRouter from "./src/controllers/get-images.controllers.js"
 import checkoutRouter from "./src/controllers/checkout.controllers.js"
+
 import cors from "cors"
 import morgan from "morgan"
 import auth from "./src/middlewares/auth.js" 

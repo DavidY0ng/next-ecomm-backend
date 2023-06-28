@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs"
 import prisma from "../utils/prisma.js"
 import { validateLogin } from "../validators/auth.js"
 import { signAccessToken } from "../utils/jwt.js"
+import { verifyAccessToken } from '../utils/jwt.js'
 import { filter } from '../utils/common.js'
 
 const router = express.Router()
@@ -36,5 +37,17 @@ router.post('/', async (req, res) => {
     const userId = user.id
     return res.status(200).json({ accessToken, userId })
 })
+
+// router.post('/refresh', async (req, res) => {
+//   const token = req.body
+//   const checkToken = await verifyAccessToken(token)
+  
+
+//   // const userFiltered = filter(user, 'id', 'name', 'email')
+//   // const accessToken = await signAccessToken(userFiltered)
+//   // const userId = user.id
+//   return res.json(checkToken)
+//   // return res.status(200).json({ accessToken, userId })
+// })
 
 export default router

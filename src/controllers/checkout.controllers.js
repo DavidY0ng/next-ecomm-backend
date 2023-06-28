@@ -2,7 +2,7 @@
 import express from 'express';
 import Stripe from 'stripe'
 import prisma from "../utils/prisma.js"
-const stripe = new Stripe ('sk_test_51NLH7lDSZDxIvwntMu2KfIg6n8VKlCXJBGrh5OWusAuADBw6EZxz3jGP8Q4625BklCKm9s6iD8m1nGrV6DL1y7TF00ppTTwxyb')
+const stripe = new Stripe (process.env.STRIPE_SECRET)
 const router = express.Router()
 
 router.post('/', async (req, res) => {
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     ],
     mode: 'payment',
     success_url: 'http://localhost:5173/checkout/success/',
-    cancel_url: 'http://localhost:5173/checkout/cancel/',
+    cancel_url: 'http://localhost:5173',
   });
   return res.json(session.url)
 

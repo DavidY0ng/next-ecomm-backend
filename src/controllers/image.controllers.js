@@ -13,7 +13,6 @@ router.post('/', async (req, res) => {
   }).then(image => {
     return res.json(image)
     
-
   }).catch(err => {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
       const formattedError = {}

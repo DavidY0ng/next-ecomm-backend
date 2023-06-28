@@ -31,8 +31,8 @@ router.post('/', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:5173/checkout/success/',
-    cancel_url: 'http://localhost:5173',
+    success_url: 'https://next-ecomm-frontend-47v.pages.dev/checkout/success/',
+    cancel_url: 'https://next-ecomm-frontend-47v.pages.dev/',
   });
   return res.json(session.url)
 
